@@ -1,0 +1,20 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <br>
+        <h1>DETAILS OF NEW BOOK :-</h1>
+        <br>
+        <div>
+            <form action="/books" method="POST">
+                <label for="name">BOOK NAME:</label>
+                <input type="text" id="name" name = "BookName" required>
+                <br>
+                <label for="author">AUTHOR NAME</label>
+                <input type="text" id="author" name ="Author" required>
+                <br>
+                <button>Submit</button>
+            </form>
+        </div>
+    </body>
+</html>

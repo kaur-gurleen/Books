@@ -1,0 +1,39 @@
+<html lang="en">
+    <%- include('./partials/header.ejs') %>
+    <style>
+        a.delete {
+        cursor: pointer;
+        box-shadow: 1px 2px 3px rgba(0,0,0,0.2);
+        }
+    </style>
+    <body>
+        <%- include('./partials/nav.ejs') %>
+        <div class = "All Books">
+            <h2>All Books</h2>
+            <% if (Books.length > 0 ) { %>
+                <% Books.forEach(book => { %>
+                        <h3><%= book.BookName %></h3>
+                        <p><%= book.Author %></p>
+                        <a class = "delete" data-doc="<%= book._id %>">delete</a>
+                <% }) %>
+            <% } else { %>
+                <p>There are no Books to display...</p>
+            <% } %>
+        </div>
+
+        <script>
+            const trash = document.querySelector('a.delete');
+            trash.addEventListener('click',(e) => {
+                const endpoint = `/${trash.dataset.doc}`;
+                fetch(endpoint,{
+                    method : 'DELETE',
+                })
+                .then(response => response.json())
+                .then(data => window.location.href = data.redirect)
+                // .then(data => { console.log(data) 
+                //     return window.location.href = data.redirect})
+                .catch(err => console.log(err))
+            });
+        </script>
+    </body>
+</html>
