@@ -6,6 +6,7 @@ const BooksRoute = require('./Routes/booksRoutes')
 
 const app = express();
 
+// Add your own mongoose connection string in .env file
 mongoose.connect(process.env.dbURI,{useNewURLParser : true, useUnifiedTopology : true})
     .then(result => app.listen(3001))
     .catch(err => console.log(err));
